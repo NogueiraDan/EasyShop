@@ -4,7 +4,6 @@ import Wishlist from "../pages/wishlist"
 import {Ionicons} from "@expo/vector-icons"
 
 // Rotas da barra de navegação inferior - Rotas estaticas;
-
 const Tab = createBottomTabNavigator();
 
 export function Routes(){
