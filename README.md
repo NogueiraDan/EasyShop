@@ -3,3 +3,4 @@
 ### 1 - Busca
 ### 2- Favoritar
 ### 3 - Minicart (com seletor de quantidade)
+![Tela de produto](./screenshots/image1.png)
