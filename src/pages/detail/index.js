@@ -7,6 +7,7 @@ import {
   Image,
   Modal,
   Share,
+  TouchableOpacity,
 } from "react-native";
 import { styles } from "./style";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -18,20 +19,24 @@ import {
   saveFavorites,
   removeFavorites,
 } from "../../utils/storage";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../store/minicartSlice";
 
 export default function Detail() {
   const route = useRoute();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showVideo, setShowVideo] = useState(false);
   const [favorite, setFavorite] = useState(false);
+  const product = route?.params.data;
 
   useLayoutEffect(() => {
     //Verificando se o item está favoritado ou não
-    async function getStatusFavorite(){
-      const productFavorite = await isFavorite(route.params?.data)
-      setFavorite(productFavorite)
+    async function getStatusFavorite() {
+      const productFavorite = await isFavorite(route.params?.data);
+      setFavorite(productFavorite);
     }
-    getStatusFavorite()
+    getStatusFavorite();
 
     // Pegando o nome da receita e setando no header
     navigation.setOptions({
@@ -50,6 +55,11 @@ export default function Detail() {
 
   function handleOpenVideo() {
     setShowVideo(true);
+  }
+
+  function handleAddToCart(data) {
+    console.log(data);
+    dispatch(addToCart(data));
   }
 
   async function shareProduct() {
@@ -91,8 +101,11 @@ export default function Detail() {
       <View style={styles.headerDetails}>
         <View>
           <Text style={styles.title}>{route.params?.data.title}</Text>
-          <Text style={styles.ingredientsText}>
-            Preço: R${route.params?.data.price},00 | Disponivéis: {route.params?.data.stock}
+          <Text style={styles.price}>
+            Preço: R${route.params?.data.price},00
+          </Text>
+          <Text style={styles.priceText}>
+            {route.params?.data.stock} unidades disponiveis
           </Text>
         </View>
 
@@ -103,11 +116,20 @@ export default function Detail() {
       </View>
 
       <View style={styles.instructionArea}>
-        <Text style={styles.instructionText}>{route.params?.data.discountPercentage}% OFF</Text>
+        <Text style={styles.instructionText}>
+          {route.params?.data.discountPercentage.toFixed(0)}% OFF
+        </Text>
       </View>
-        <Instruction key={route.params?.data.id} data={route.params?.data.description} />
-     
-
+      <Instruction
+        key={route.params?.data.id}
+        data={route.params?.data.description}
+      />
+      <TouchableOpacity
+        onPress={() => handleAddToCart(product)}
+        style={styles.buyButton}
+      >
+        <Text style={styles.buyButtonText}>Comprar</Text>
+      </TouchableOpacity>
       {/* MODAL DE VIDEO */}
       <Modal visible={showVideo} animationType="slide">
         <VideoView

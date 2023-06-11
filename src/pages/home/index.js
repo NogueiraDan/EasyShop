@@ -11,7 +11,6 @@ import Logo from "../../components/Logo";
 import Productlist from "../../components/Productlist";
 import { Ionicons } from "@expo/vector-icons";
 import api from "../../../services/api";
-import axios from "axios"
 import { useNavigation } from "@react-navigation/native";
 import {Text as MotiText} from "moti"
 
@@ -22,20 +21,18 @@ export default function Home() {
 
   useEffect(() => {
     async function fecthApi() {
-      axios.get("https://dummyjson.com/products")
-      .then(response=>{
+      try {
+        const response = await api.get(''); 
         setProducts(response.data.products);
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+      } catch (error) {
+        console.error(error);
+      }
     }
     fecthApi();
   }, []);
 
   function handleSearch() {
     if (!inputValue) return;
-
     let input = inputValue;
     setInputValue("");
     navigation.navigate("Search", { name: input });

@@ -28,16 +28,22 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   title:{
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 15,
     fontWeight: "bold",
     color: "#fff",
-    marginBottom: 5
+    marginBottom: 5,
   },
-  ingredientsText:{
-    marginBottom: 15,
-    fontSize: 16,
+  priceText:{
+    marginBottom: 5,
+    fontSize: 18,
     color: "#fff"
+  },
+  price:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#fff",
+    marginBottom: 5
   },
   headerDetails:{
     flexDirection: "row",
@@ -49,14 +55,30 @@ const styles = StyleSheet.create({
     backgroundColor:'#095437',
     flexDirection: "row",
     padding: 8,
+    width: "50%",
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    justifyContent:"center"
   },
   instructionText:{
     fontSize: 20,
     fontWeight: 500,
     color: "#FFF",
     marginRight: 8
+  },
+  buyButton:{
+    backgroundColor:'#e60000',
+    flexDirection: "row",
+    padding: 8,
+    width: "50%",
+    borderRadius: 5,
+    marginBottom: 15,
+    justifyContent:"center"
+  },
+  buyButtonText:{
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold"
   }
 });
 

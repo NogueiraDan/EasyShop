@@ -20,7 +20,7 @@ export default function StackRoutes(){
                 name="Detail" 
                 component={Detail} 
                 options={{
-                    title: "Detalhes da receita"
+                    title: "Detalhes do produto"
                 }}
             />
             <Stack.Screen 
