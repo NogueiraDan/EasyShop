@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
-    backgroundColor: "#231F20",
+    backgroundColor: "#e6e6e6",
     paddingTop: 36,
     paddingStart: 15,
     paddingEnd: 15,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight:"bold",
     alignSelf:"flex-start",
-    color: "#fff"
+    color: "#000"
   },
   form:{
     backgroundColor: "#FFF",

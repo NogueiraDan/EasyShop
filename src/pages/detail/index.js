@@ -58,8 +58,8 @@ export default function Detail() {
   }
 
   function handleAddToCart(data) {
-    console.log(data);
     dispatch(addToCart(data));
+    alert("Adicionado ao carrinho")
   }
 
   async function shareProduct() {
@@ -111,7 +111,7 @@ export default function Detail() {
 
         {/* Botão de compartilhar */}
         <Pressable onPress={shareProduct}>
-          <Feather name="share-2" size={24} color="#fff" />
+          <Feather name="share-2" size={24} color="#262626" />
         </Pressable>
       </View>
 

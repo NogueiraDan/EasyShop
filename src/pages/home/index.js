@@ -61,7 +61,7 @@ export default function Home() {
           onChangeText={(text) => setInputValue(text)}
         />
         <TouchableOpacity onPress={handleSearch}>
-          <Ionicons name="search" size={28} color="#46BD6A" />
+          <Ionicons name="search" size={28} color="#0c734c" />
         </TouchableOpacity>
       </View>
 

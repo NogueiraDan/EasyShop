@@ -1,35 +1,80 @@
-import { SafeAreaView, Text, View, Pressable } from "react-native";
+import React from "react";
+import { SafeAreaView, Text, View, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { styles } from "./style";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../../store/minicartSlice";
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+  clearCart,
+} from "../../../store/minicartSlice";
+import { styles } from "./style";
 
 const Minicart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-  const handleRemover = (productId) => {
+
+  const handleRemove = (productId) => {
     dispatch(removeFromCart(productId));
   };
+
+  const handleIncrement = (productId) => {
+    dispatch(incrementQuantity(productId));
+  };
+
+  const handleDecrement = (productId) => {
+    dispatch(decrementQuantity(productId));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Minicart</Text>
+      <View style={styles.minicartHeader}>
+        <Text style={styles.title}>Minicart</Text>
+      </View>
+      {cartItems.length > 0 ? (
+        <ScrollView>
+          {cartItems.map((item) => (
+            <View style={styles.product} key={item.id}>
+              <View style={styles.productImageWrapper}>
+                <Image
+                  source={{ uri: item.thumbnail }}
+                  style={styles.productImage}
+                />
+              </View>
+              <View style={styles.cartInfo}>
+                <Text style={styles.productTitle}>{item.title}</Text>
+                <Text>{item.quantity} unidades</Text>
+                <Text style={styles.productPrice}>
+                  ${item.quantity * item.price}
+                </Text>
 
-      <ScrollView>
-        {cartItems.map((item) => (
-          <View style={styles.product}>
-            <Text key={item.id}>{item.title}</Text>
-            <Pressable
-              key={item.id}
-              onPress={() => handleRemover(item.id)}
-              style={({ pressed }) => [
-                { backgroundColor: pressed ? "lightgray" : "transparent" },
-              ]}
-            >
-              <Text>Remover</Text>
-            </Pressable>
-          </View>
-        ))}
-      </ScrollView>
+                <View style={styles.quantityControls}>
+                  <Pressable onPress={() => handleIncrement(item.id)}>
+                    <Text style={styles.incrementQuantity}>+</Text>
+                  </Pressable>
+
+                  <Text style={styles.quantity}>{item.quantity}</Text>
+
+                  <Pressable onPress={() => handleDecrement(item.id)}>
+                    <Text style={styles.decrementQuantity}>-</Text>
+                  </Pressable>
+                </View>
+
+                <Pressable
+                  onPress={() => handleRemove(item.id)}
+                  style={styles.cartBuyButton}
+                >
+                  <Text>Remover</Text>
+                </Pressable>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+      ) : (
+        <View style={styles.emptyCartWrapper}>
+          <Text style={styles.emptyCartTitle}>Carrinho Vazio</Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
