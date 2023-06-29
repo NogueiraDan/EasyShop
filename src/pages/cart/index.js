@@ -6,7 +6,6 @@ import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
-  clearCart,
 } from "../../../store/minicartSlice";
 import { styles } from "./style";
 
@@ -32,44 +31,46 @@ const Minicart = () => {
         <Text style={styles.title}>Minicart</Text>
       </View>
       {cartItems.length > 0 ? (
-        <ScrollView>
-          {cartItems.map((item) => (
-            <View style={styles.product} key={item.id}>
-              <View style={styles.productImageWrapper}>
-                <Image
-                  source={{ uri: item.thumbnail }}
-                  style={styles.productImage}
-                />
-              </View>
-              <View style={styles.cartInfo}>
-                <Text style={styles.productTitle}>{item.title}</Text>
-                <Text>{item.quantity} unidades</Text>
-                <Text style={styles.productPrice}>
-                  ${item.quantity * item.price}
-                </Text>
+        <View>
+          <ScrollView style={styles.cartContent} showsVerticalScrollIndicator={false}>
+            {cartItems.map((item) => (
+              <View style={styles.product} key={item.id}>
+                <View style={styles.productImageWrapper}>
+                  <Image
+                    source={{ uri: item.thumbnail }}
+                    style={styles.productImage}
+                  />
+                </View>
+                <View style={styles.cartInfo}>
+                  <Text style={styles.productTitle}>{item.title}</Text>
+                  <Text>{item.quantity} unidades</Text>
+                  <Text style={styles.productPrice}>
+                    ${item.quantity * item.price}
+                  </Text>
 
-                <View style={styles.quantityControls}>
-                  <Pressable onPress={() => handleIncrement(item.id)}>
-                    <Text style={styles.incrementQuantity}>+</Text>
-                  </Pressable>
+                  <View style={styles.quantityControls}>
+                    <Pressable onPress={() => handleIncrement(item.id)}>
+                      <Text style={styles.incrementQuantity}>+</Text>
+                    </Pressable>
 
-                  <Text style={styles.quantity}>{item.quantity}</Text>
+                    <Text style={styles.quantity}>{item.quantity}</Text>
 
-                  <Pressable onPress={() => handleDecrement(item.id)}>
-                    <Text style={styles.decrementQuantity}>-</Text>
+                    <Pressable onPress={() => handleDecrement(item.id)}>
+                      <Text style={styles.decrementQuantity}>-</Text>
+                    </Pressable>
+                  </View>
+
+                  <Pressable
+                    onPress={() => handleRemove(item.id)}
+                    style={styles.cartRemoveButton}
+                  >
+                    <Text>Remover</Text>
                   </Pressable>
                 </View>
-
-                <Pressable
-                  onPress={() => handleRemove(item.id)}
-                  style={styles.cartBuyButton}
-                >
-                  <Text>Remover</Text>
-                </Pressable>
               </View>
-            </View>
-          ))}
-        </ScrollView>
+            ))}
+          </ScrollView>
+        </View>
       ) : (
         <View style={styles.emptyCartWrapper}>
           <Text style={styles.emptyCartTitle}>Carrinho Vazio</Text>

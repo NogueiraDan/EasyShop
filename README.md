@@ -1,4 +1,4 @@
-## Projeto de um aplicativo de produtos, onde consome uma API. 
+# Projeto de um aplicativo de produtos que simula uma loja virtual, com o Minicart usando Redux. Os produtos são provenientes de uma API.
 ### Funcionalidades
 ### 1 - Busca
 ### 2- Favoritar

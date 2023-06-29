@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     padding: 10,
+    marginVertical: 10,
     borderRadius: 10,
     height: "auto",
     width: "100%",
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
     minWidth: "50%",
     height: "auto",
   },
+  cartContent:{
+    marginBottom: 65,
+  },
   productTitle: {
     fontSize: 20,
     fontWeight: "bold",
@@ -61,11 +65,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
-  cartBuyButton: {
-    padding: 10,
+  cartRemoveButton: {
     backgroundColor: "#ff6666",
-    width: "50%",
+    width: "60%",
+    height: 40,
     alignItems: "center",
+    justifyContent: "center",
     borderRadius: 10,
     marginTop: 10,
   },
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   incrementQuantity: {
-    fontSize: 16,
+    fontSize: 18,
     margin: 5,
   },
   decrementQuantity: {
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   quantity: {
-    fontSize: 16,
+    fontSize: 18,
     margin: 5,
   },
 });
