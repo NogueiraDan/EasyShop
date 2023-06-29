@@ -66,7 +66,7 @@ export default function Detail() {
     try {
       await Share.share({
         url: "https://expo.dev",
-        message: `Receita: ${route.params?.data.title}`,
+        message: `Produto: ${route.params?.data.title}`,
       });
     } catch (error) {
       alert(error);
